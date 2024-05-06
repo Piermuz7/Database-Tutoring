@@ -1,0 +1,416 @@
+\documentclass[11pt,aspectratio=169]{beamer}
+\usepackage[italian]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[export]{adjustbox}
+% Custom bullets
+\usepackage{pifont}
+\usepackage[useregional]{datetime2}
+\usepackage{tikz}
+\usepackage[table]{colortbl}
+\usepackage{venndiagram}
+\usepackage{amsmath}
+% custom legend
+\newcommand{\cbox}[1]{\raisebox{\depth}{\fcolorbox{black}{#1}{\null}}}
+
+\usetheme{Madrid}
+\usecolortheme{spruce}
+
+% Redefine labels
+\deftranslation[to=Italian]{Section}{Sezione}
+\deftranslation[to=Italian]{Subsection}{Sottosezione}
+
+
+\author[Piero Hierro \and Piermichele Rosati]{Piero Hierro \and Piermichele Rosati}
+
+\institute[]{\large Universit\`a di Camerino\\ \footnotesize Tutorato - Basi di Dati}
+
+\title[Introduzione]{3. SQL}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+%\titlegraphic{\includegraphics[width=6cm]{img/unicam-logo.jpg}}
+\makeatletter
+\setbeamertemplate{footline}{
+    \leavevmode%
+    \hbox{%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+            \usebeamerfont{author in head/foot}\insertshortauthor
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+            \usebeamerfont{title in head/foot}\insertshorttitle
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+            \usebeamerfont{date in head/foot}7 Maggio 2024\hspace*{5 em}
+            \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+        \end{beamercolorbox}%
+    }%
+    \vskip0pt%
+}
+\makeatother
+
+
+\AtBeginSection[]
+{
+\begin{frame}<beamer>
+\frametitle{Indice}
+\tableofcontents[currentsection]
+\end{frame}
+}
+
+\begin{document}
+\begin{frame}
+\centering
+\includegraphics[width=5.5cm]{img/unicam-logo.jpg}
+\date{7 Maggio 2024}
+\titlepage
+\end{frame}
+\addtobeamertemplate{frametitle}{}{%
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[height=2cm]{img/unicam-logo-notext.png}};
+\end{tikzpicture}}
+
+%\begin{frame}
+%\titlepage
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%
+\begin{frame}{GROUP BY}
+\begin{table}[h]
+\centering
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Esame} \\
+\hline
+\rowcolor{cyan!30} matricola  & voto & corso \\
+\hline
+100  & 30 & 27035 \\
+100  & 28 & 27038 \\
+100  & 18 & 27010 \\
+102  & 21 & 27038 \\
+101  & 25 & 27045 \\
+102 & 21 & 27010 \\
+\hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{2}{|c|}{Result} \\
+\hline
+\rowcolor{cyan!30} matricola  & voti \\
+\hline
+100  & 3 \\
+101  & 1  \\
+102  & 2 \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+\vspace{2em}
+\texttt{SELECT matricola, COUNT(voto) AS voti\\FROM Esame\\GROUP BY matricola;}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{HAVING}
+\begin{table}[h]
+\centering
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Esame} \\
+\hline
+\rowcolor{cyan!30} matricola  & voto & corso \\
+\hline
+100  & 30 & 27035 \\
+100  & 28 & 27038 \\
+100  & 18 & 27010 \\
+102  & 21 & 27038 \\
+101  & 25 & 27045 \\
+102 & 21 & 27010 \\
+\hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+\vspace{2em}
+\texttt{SELECT matricola, COUNT(voto) AS voti\\FROM Esame\\GROUP BY matricola\\HAVING COUNT(voto)>1;}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{HAVING}
+\begin{table}[h]
+\centering
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Esame} \\
+\hline
+\rowcolor{cyan!30} matricola  & voto & corso \\
+\hline
+100  & 30 & 27035 \\
+100  & 28 & 27038 \\
+100  & 18 & 27010 \\
+102  & 21 & 27038 \\
+101  & 25 & 27045 \\
+102 & 21 & 27010 \\
+\hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{2}{|c|}{Result} \\
+\hline
+\rowcolor{cyan!30} matricola  & voti \\
+\hline
+100  & 3 \\
+102  & 2  \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+\vspace{2em}
+\texttt{SELECT matricola, COUNT(voto) AS voti\\FROM Esame\\GROUP BY matricola\\HAVING COUNT(voto)>1;}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{ORDER BY}
+\begin{table}[h]
+\centering
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Esame} \\
+\hline
+\rowcolor{cyan!30} matricola  & voto & corso \\
+\hline
+100  & 30 & 27035 \\
+100  & 28 & 27038 \\
+100  & 18 & 27010 \\
+102  & 21 & 27038 \\
+101  & 25 & 27045 \\
+102 & 21 & 27010 \\
+\hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+\vspace{2em}
+\texttt{SELECT *\\FROM Esame\\ORDER BY matricola ASC;}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{ORDER BY}
+\begin{table}[h]
+\centering
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Esame} \\
+\hline
+\rowcolor{cyan!30} matricola  & voto & corso \\
+\hline
+100  & 30 & 27035 \\
+100  & 28 & 27038 \\
+100  & 18 & 27010 \\
+102  & 21 & 27038 \\
+101  & 25 & 27045 \\
+102 & 21 & 27010 \\
+\hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Esame} \\
+\hline
+\rowcolor{cyan!30} matricola  & voto & corso \\
+\hline
+100 & 30 & 27035 \\
+100 & 28 & 27038 \\
+100 & 18 & 27010 \\
+101 & 25 & 27045 \\
+102 & 21 & 27038 \\
+102 & 21 & 27010 \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+\vspace{2em}
+\texttt{SELECT *\\FROM Esame\\ORDER BY matricola ASC;}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{ORDER BY}
+\begin{table}[h]
+\centering
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Esame} \\
+\hline
+\rowcolor{cyan!30} matricola  & voto & corso \\
+\hline
+100  & 30 & 27035 \\
+100  & 28 & 27038 \\
+100  & 18 & 27010 \\
+102  & 21 & 27038 \\
+101  & 25 & 27045 \\
+102 & 21 & 27010 \\
+\hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+\vspace{2em}
+\texttt{SELECT *\\FROM Esame\\ORDER BY matricola DESC, voto ASC;}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{ORDER BY}
+\begin{table}[h]
+\centering
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Esame} \\
+\hline
+\rowcolor{cyan!30} matricola  & voto & corso \\
+\hline
+100  & 30 & 27035 \\
+100  & 28 & 27038 \\
+100  & 18 & 27010 \\
+102  & 21 & 27038 \\
+101  & 25 & 27045 \\
+102 & 21 & 27010 \\
+\hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Esame} \\
+\hline
+\rowcolor{cyan!30} matricola  & voto & corso \\
+\hline
+102 & 21 & 27038 \\
+102 & 21 & 27010 \\
+101 & 25 & 27045 \\
+100 & 18 & 27010 \\
+100 &  28 & 27038 \\
+100 & 30 & 27035 \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+\vspace{2em}
+\texttt{SELECT *\\FROM Esame\\ORDER BY matricola DESC, voto ASC;}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{UNION}
+\begin{table}[h]
+\centering
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Studente} \\
+\hline
+\rowcolor{cyan!30} Nome  & Cognome & AnnoDiNascita \\
+\hline
+ciccio  & pasticcio & 1992 \\
+pippo  & calippo & 1994 \\
+
+\hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Professore} \\
+\hline
+\rowcolor{cyan!30} Nome  & Cognome & DataNascita \\
+\hline
+balema & giuseppina & 1967 \\
+
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+\vspace{2em}
+\texttt{SELECT * FROM Studente\\UNION\\SELECT * FROM Professore;}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{UNION}
+\begin{table}[h]
+\centering
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Studente} \\
+\hline
+\rowcolor{cyan!30} Nome  & Cognome & AnnoDiNascita \\
+\hline
+ciccio  & pasticcio & 1992 \\
+pippo  & calippo & 1994 \\
+
+\hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{.45\textwidth}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{cyan!30} \multicolumn{3}{|c|}{Professore} \\
+\hline
+\rowcolor{cyan!30} Nome  & Cognome & AnnoDiNascita \\
+\hline
+balema & giuseppina & 1967 \\
+
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+\vspace{2em}
+\texttt{SELECT * FROM Studente\\UNION\\SELECT * FROM Professore;}
+\begin{itemize}
+    \item Stesso numero di colonne nelle SELECT
+    \item Stesso ordine di colonne nelle SELECT
+    \item Stesso tipo dato nelle colonne delle SELECT
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\end{document}
