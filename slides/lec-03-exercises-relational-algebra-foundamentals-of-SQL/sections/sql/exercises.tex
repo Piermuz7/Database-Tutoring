@@ -1,0 +1,191 @@
+\begin{frame}
+\centering
+\includegraphics[width=5.5cm]{img/unicam-logo.jpg}
+\date{7 Maggio 2024}
+\titlepage
+\end{frame}
+\addtobeamertemplate{frametitle}{}{%
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[height=2cm]{img/unicam-logo-notext.png}};
+\end{tikzpicture}}
+
+%\begin{frame}
+%\titlepage
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Esercizio 4.1}
+         Ordinare i seguenti domini in base al valore massimo rappresentabile, supponendo che \texttt{integer} abbia una rappresentazione a 32 bit e \texttt{smallint} a 16 bit:
+        \begin{enumerate}
+            \item \texttt{numeric(12,4)}
+            \item \texttt{decimal(10)}
+            \item \texttt{decimal(9)}
+            \item \texttt{integer}
+            \item \texttt{smallint}
+            \item \texttt{decimal(6,1)}
+        \end{enumerate}
+\end{frame}
+
+\begin{frame}{Esercizio 4.1}
+    \textbf{Soluzione:}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            Dominio & Valore Massimo \\
+            \hline
+            \texttt{decimal(10)} & 9999999999 \\
+            \texttt{integer} & 4294967296 \\
+            \texttt{decimal(9)} & 999999999 \\
+            \texttt{numeric(12,4)} & 99999999.9999 \\
+            \texttt{decimal(6,1)} & 99999.9 \\
+            \texttt{smallint} & 65536 \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{Esercizio 4.7}
+    Con riferimento ad una relazione \texttt{PROFESSORI(CF, Nome, Et\`a, Qualifica)}, scrivere le interrogazioni SQL che calcolano l'et\`a media dei professori di ciascuna qualifica, nei due casi seguenti:
+    \begin{enumerate}
+        \item se l'et\`a non \`e nota si usa per essa il valore nullo
+        \item se l'et\`a non \`e nota si usa per essa il valore 0.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Esercizio 4.7}
+    \textbf{Soluzione:}
+    Le funzioni aggregative escludono dalla valutazione le ennuple con valori nulli:
+    \vspace{1em}
+    
+    \texttt{SELECT Qualifica, AVG(Et\`a) AS Et\`aMedia\\FROM Professori\\GROUP BY Qualifica;}
+\end{frame}
+
+\begin{frame}{Esercizio 4.7}
+    \textbf{Soluzione:}
+    \`E necessario escludere esplicitamente dal calcolo della media le ennuple con il valore che denota l'informazione incompleta:
+    \vspace{1em}
+    
+    \texttt{SELECT Qualifica, AVG(Et\`a) AS Et\`aMedia\\FROM Professori\\WHERE Et\`a <> 0\\GROUP BY Qualifica;}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{Esercizio 4.14}
+    Dato il seguente schema:
+    \begin{itemize}
+        \item AEROPORTO(Citt\`a, Nazione,NumPiste)
+        \item VOLO(IdVolo,GiornoSett,Citt\`aPart,OraPart,
+        Citt\`aArr,OraArr,TipoAereo)
+        \item AEREO(TipoAereo,NumPasseggeri,QtaMerci)
+    \end{itemize}
+    \vspace{1em}
+    
+    \textbf{Le citt\`a con un aeroporto di cui non \`e noto il numero di piste.}
+\end{frame}
+
+\begin{frame}{Esercizio 4.14}
+    \textbf{Soluzione:}
+    \vspace{1em}
+    
+    \texttt{SELECT DISTINCT Citt\`a\\FROM AEROPORTO\\WHERE NumPiste IS NULL;}
+    \end{frame}
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Esercizio 4.14}
+    Dato il seguente schema:
+    \begin{itemize}
+        \item AEROPORTO(Citt\`a, Nazione,NumPiste)
+        \item VOLO(IdVolo,GiornoSett,Citt\`aPart,OraPart,
+        Citt\`aArr,OraArr,TipoAereo)
+        \item AEREO(TipoAereo,NumPasseggeri,QtaMerci)
+    \end{itemize}
+    \vspace{1em}
+    
+    \textbf{Le nazioni da cui parte e arriva il volo con codice AZ274.}
+\end{frame}
+
+\begin{frame}{Esercizio 4.14}
+    \textbf{Soluzione:}
+    \vspace{1em}
+    
+    \texttt{SELECT A1.Nazione, A2.Nazione\\FROM AEROPORTO AS A1\\ JOIN VOLO ON A1.Citt\`a = Citt\`aArr \\JOIN AEROPORTO AS A2 ON Citt\`aPart = A2.Citt\`a\\WHERE IdVolo = 'AZ274';
+}
+    \end{frame}
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Esercizio 4.14}
+    Dato il seguente schema:
+    \begin{itemize}
+        \item AEROPORTO(Citt\`a, Nazione,NumPiste)
+        \item VOLO(IdVolo,GiornoSett,Citt\`aPart,OraPart,
+        Citt\`aArr,OraArr,TipoAereo)
+        \item AEREO(TipoAereo,NumPasseggeri,QtaMerci)
+    \end{itemize}
+    \vspace{1em}
+    
+    \textbf{Le citt\`a con un aeroporto di cui non \`e noto il numero di piste.}
+\end{frame}
+
+\begin{frame}{Esercizio 4.14}
+    \textbf{Soluzione:}
+    \vspace{1em}
+    
+    \texttt{SELECT DISTINCT Citt\`a\\FROM AEROPORTO\\WHERE NumPiste IS NULL;}
+    \end{frame}
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Esercizio 4.14}
+    Dato il seguente schema:
+    \begin{itemize}
+        \item AEROPORTO(Citt\`a, Nazione,NumPiste)
+        \item VOLO(IdVolo,GiornoSett,Citt\`aPart,OraPart,
+        Citt\`aArr,OraArr,TipoAereo)
+        \item AEREO(TipoAereo,NumPasseggeri,QtaMerci)
+    \end{itemize}
+    \vspace{1em}
+    
+    \textbf{I tipi di aereo usati nei voli che partono da Torino}
+\end{frame}
+
+\begin{frame}{Esercizio 4.14}
+    \textbf{Soluzione:}
+    \vspace{1em}
+    
+    \texttt{SELECT TipoAereo\\FROM VOLO\\WHERE Citt\`aPart='Torino'}
+    \end{frame}
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Esercizio 4.14}
+    Dato il seguente schema:
+    \begin{itemize}
+        \item AEROPORTO(Citt\`a, Nazione,NumPiste)
+        \item VOLO(IdVolo,GiornoSett,Citt\`aPart,OraPart,
+        Citt\`aArr,OraArr,TipoAereo)
+        \item AEREO(TipoAereo,NumPasseggeri,QtaMerci)
+    \end{itemize}
+    \vspace{1em}
+    
+    \textbf{Le citt\`a con un aeroporto di cui non \`e noto il numero di piste.}
+\end{frame}
+
+\begin{frame}{Esercizio 4.14}
+    \textbf{Soluzione:}
+    \vspace{1em}
+    
+    \texttt{SELECT DISTINCT Citt\`a\\FROM AEROPORTO\\WHERE NumPiste IS NULL;}
+    \end{frame}
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Esercizio 4.14}
+    Dato il seguente schema:
+    \begin{itemize}
+        \item AEROPORTO(Citt\`a, Nazione,NumPiste)
+        \item VOLO(IdVolo,GiornoSett,Citt\`aPart,OraPart,
+        Citt\`aArr,OraArr,TipoAereo)
+        \item AEREO(TipoAereo,NumPasseggeri,QtaMerci)
+    \end{itemize}
+    \vspace{1em}
+    
+    \textbf{I tipi di aereo e il corrispondente numero di passeggeri per i tipi di aereo usati nei voli che partono da Torino. Se la descrizione dell`aereo non \`e disponibile, visualizzare solamente il tipo;}
+\end{frame}
+
+\begin{frame}{Esercizio 4.14}
+    \textbf{Soluzione:}
+    \vspace{1em}
+    
+    \texttt{SELECT VOLO.TipoAereo, NumPasseggeri\\FROM VOLO LEFT JOIN AEREO ON VOLO.TipoAereo=aereo.TipoAereo\\WHERE Citt\`aPart= 'Torino'}
+    \end{frame}
