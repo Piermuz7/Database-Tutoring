@@ -1,0 +1,40 @@
+\begin{frame}{DDL: CREATE TABLE}
+    \texttt{CREATE TABLE nomeTabella
+    \\(
+    \\campo1 tipoDati [valore di default] [vincoli],
+    \\campo2 tipoDati [valore di default] [vincoli],
+    \\campo3 tipoDati [valore di default] [vincoli],
+    \\\ldots
+     \\);}
+\end{frame}
+%
+\begin{frame}[fragile]{CREATE TABLE: Impiegati}
+    \begin{verbatim}
+        CREATE TABLE Impiegati(
+            ID              smallint PRIMARY KEY,
+            Nome            char(20) not null,
+            Cognome         char(30) not null,
+            Residenza       char(30) default `*** Manca residenza',
+            Stipendio       decimal(9,2),
+            Dipartimento    char(5) references Dipartimenti(Codice),
+            UNIQUE(Cognome, Nome, Dipartimento)
+            );
+    \end{verbatim}
+\end{frame}
+%
+\begin{frame}[fragile]{CREATE TABLE: Dipartimenti}
+    \begin{verbatim}
+        CREATE TABLE Dipartimenti(
+            Codice          char(5),
+            Descrizione     char(20) not null,
+            Sede            char(20),
+            Manager         smallint,
+            PRIMARY KEY (Codice),
+            UNIQUE(Descrizione),
+            FOREIGN KEY (Manager) REFERENCES Impiegati(ID)
+                ON DELETE SET null
+                ON UPDATE CASCADE
+             );    
+    \end{verbatim}
+    
+\end{frame}
