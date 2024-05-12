@@ -67,7 +67,7 @@
     {\small Codici di tutti i prodotti che sono forniti da almeno due fornitori:}
     \small
     \begin{gather*}
-        COPIACATALOGO = \rho_{CF~\leftarrow~CF} (\pi_{CP,CF} CATALOGO)\\
+        COPIACATALOGO = \rho_{CF'~\leftarrow~CF} (\pi_{CP,CF} CATALOGO)\\
         \pi_{CP} (\sigma_{CF~>~CF'} (CATALOGO~\bowtie~COPIACATALOGO))
     \end{gather*}
 \end{frame}
@@ -83,12 +83,15 @@
 %
 \begin{frame}{Esercizio 3.20}
     \framesubtitle{Soluzione 3.20.4}
-    \vspace*{-2cm}
+    \vspace*{-1cm}
     \schemaEx3.20
     \vspace{.3cm}
 
     {\small Nomi dei fornitori che distribuiscono tutti i prodotti presenti nel catalogo:}
     \small
+    \newline
+    {\\Formuliamo innanzitutto l'interrogazione $R$ che trova i fornitori a cui manca almeno un prodotto del catalogo:\\}
+    \vspace{-.5cm}
     \begin{gather*}
         R = \pi_{CF}((\pi_{CF} (FORNITORI)~\bowtie~\pi_{CP}(CATALOGO))~-~\pi_{CF,CP}(CATALOGO))\\
         \pi_{Nome}((\pi_{CF}(FORNITORI)~-~R)~\bowtie~FORNITORI)
@@ -113,7 +116,7 @@
     {\small Nomi dei fornitori che forniscono tutti i prodotti IBM presenti nel catalogo:}
     \small
     \begin{gather*}
-        CATALOGOIBM = \pi_{CP,CF} (\sigma_{Marca='IBM'} (CATALOGOIBM~\bowtie~PRODOTTI))\\
+        CATALOGOIBM = \pi_{CP,CF} (\sigma_{Marca='IBM'} (CATALOGO~\bowtie~PRODOTTI))\\
         R = \pi_{CF}((\pi_{CF} (FORNITORI)~\bowtie~\pi_{CP}(CATALOGOIBM))~-~\pi_{CF,CP}(CATALOGOIBM))\\
         \pi_{Nome}((\pi_{CF}(FORNITORI)~-~R)~\bowtie~FORNITORI)
     \end{gather*}

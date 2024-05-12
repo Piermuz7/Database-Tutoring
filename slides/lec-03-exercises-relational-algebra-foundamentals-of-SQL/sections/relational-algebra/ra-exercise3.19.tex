@@ -1,10 +1,9 @@
 \def\schemaEx3.19{\small \begin{align*}
     CLIENTI &= (\underline{Codice}, Nome, Indirizzo, Citta)\\
-    NOLEGGI &= (\underline{Cliente}, Auto, DataPrelievo, DataRestituzione)\\
-    AUTOVETTURE &= (\underline{ID}, NomeSostanza, Categoria)
+    NOLEGGI &= (\underline{Cliente, Auto, DataPrelievo}, DataRestituzione)\\
+    AUTOVETTURE &= (\underline{Targa}, Modello, Colore, AnnoImmatricolazione, CostoGiornaliero)
     \end{align*}
-    $NOLEGGI$ con vincolo di integrit\`a referenziale fra l'attributo $Auto$ e la relazione $AUTOVETTURE$.
-    $AUTOVETTURE$ con vincolo di integrit\`a referenziale fra l'attributo $Cliente$ e la relazione $CLIENTI$.}
+    $NOLEGGI$ con vincolo di integrit\`a referenziale fra l'attributo $Auto$ e la relazione $AUTOVETTURE$ e con vincolo di integrit\`a referenziale fra l'attributo $Cliente$ e la relazione $CLIENTI$.}
 \begin{frame}{Esercizio 3.19}
     \framesubtitle{3.19.1}
     \vspace{-3.cm}
