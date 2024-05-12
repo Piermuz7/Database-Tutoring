@@ -32,7 +32,7 @@
 \begin{frame}{Esercizio 4.7}
     Con riferimento ad una relazione \texttt{PROFESSORI(CF, Nome, Et\`a, Qualifica)}, scrivere le interrogazioni SQL che calcolano l'et\`a media dei professori di ciascuna qualifica, nei due casi seguenti:
     \begin{enumerate}
-        \item se l'et\`a non \`e nota si usa per essa il valore nullo
+        \item se l'et\`a non \`e nota si usa per essa il valore nullo;
         \item se l'et\`a non \`e nota si usa per essa il valore 0.
     \end{enumerate}
 \end{frame}
@@ -90,7 +90,7 @@
     \textbf{Soluzione:}
     \vspace{1em}
     
-    \texttt{SELECT A1.Nazione, A2.Nazione\\FROM AEROPORTO AS A1\\ JOIN VOLO ON A1.Citt\`a = Citt\`aArr \\JOIN AEROPORTO AS A2 ON Citt\`aPart = A2.Citt\`a\\WHERE IdVolo = 'AZ274';
+    \texttt{SELECT A1.Nazione, A2.Nazione\\FROM AEROPORTO AS A1\\ JOIN VOLO ON A1.Citt\`a = Citt\`aArr \\JOIN AEROPORTO AS A2 ON Citt\`aPart = A2.Citt\`a\\WHERE IdVolo = `AZ274';
 }
     \end{frame}
 %%%%%%%%%%%%%%%%%%%
@@ -131,7 +131,7 @@
     \textbf{Soluzione:}
     \vspace{1em}
     
-    \texttt{SELECT TipoAereo\\FROM VOLO\\WHERE Citt\`aPart='Torino'}
+    \texttt{SELECT TipoAereo\\FROM VOLO\\WHERE Citt\`aPart=`Torino'}
     \end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}{Esercizio 4.14}
@@ -171,5 +171,5 @@
     \textbf{Soluzione:}
     \vspace{1em}
     
-    \texttt{SELECT VOLO.TipoAereo, NumPasseggeri\\FROM VOLO LEFT JOIN AEREO ON VOLO.TipoAereo=aereo.TipoAereo\\WHERE Citt\`aPart= 'Torino'}
+    \texttt{SELECT VOLO.TipoAereo, NumPasseggeri\\FROM VOLO LEFT JOIN AEREO ON VOLO.TipoAereo=aereo.TipoAereo\\WHERE Citt\`aPart= `Torino'}
     \end{frame}
