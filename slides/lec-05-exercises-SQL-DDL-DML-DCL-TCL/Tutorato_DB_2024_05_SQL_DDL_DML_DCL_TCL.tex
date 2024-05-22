@@ -30,6 +30,12 @@
 \def\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
 \def\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
 
+% highlight text
+\lstset{
+  basicstyle=\ttfamily,
+  escapeinside=||
+}
+
 \author[Piero Hierro \and Piermichele Rosati]{Piero Hierro \and Piermichele Rosati}
 
 \institute[]{\large Universit\`a di Camerino\\ \footnotesize Tutorato - Basi di Dati}
@@ -94,6 +100,7 @@
 \input{sections/ddl/ddl.tex}
 %
 \section{Comandi per la Manipolazione dei Dati}
+\input{sections/dml/dml.tex}
 %
 \section{Conclusioni}
 
