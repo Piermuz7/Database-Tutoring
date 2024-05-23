@@ -1,3 +1,10 @@
+\begin{frame}[fragile]{Definire il database}
+I database vengono creati con il comando \textbf{CREATE DATABASE}, seguito dal nome del database:
+\begin{lstlisting}
+CREATE DATABASE nomeDB;
+\end{lstlisting}
+\end{frame}
+%
 \begin{frame}{Definire le tabelle}
 Le tabelle vengono definite con il comando \textbf{CREATE TABLE}, seguito dal nome della tabella seguito, tra parentesi, dall'elenco degli attributi.
 \begin{itemize}
@@ -10,6 +17,7 @@ Le tabelle vengono definite con il comando \textbf{CREATE TABLE}, seguito dal no
     \end{itemize}
 \end{itemize}
 \end{frame}
+%
 \begin{frame}[fragile]{DDL: CREATE TABLE}
 \begin{lstlisting}
 CREATE TABLE nomeTabella(
@@ -315,6 +323,7 @@ DESCRIBE Dipartimenti;
     Manager & smallint & YES & MUL & NULL & \\ \hline
 \end{tabular}
 \end{frame}
+%
 \begin{frame}[fragile]{Modificare le tabelle}
 La struttura di una tabella pu\`o essere modificata in un secondo momento con il comando \textbf{ALTER TABLE} per:
 \begin{itemize}
@@ -367,3 +376,25 @@ ALTER TABLE nomeTabella
 MODIFY COLUMN nomeColonna tipoDato;
 \end{lstlisting}
 \end{frame}
+%
+\begin{frame}[fragile]{Eliminare il database}
+I database vengono eliminati con il comando comando \textbf{DROP DATABASE}, seguito dal nome del database:
+\begin{lstlisting}
+DROP DATABASE nomeDB;
+\end{lstlisting}
+\end{frame}
+%
+\begin{frame}[fragile]{Eliminare le tabelle}
+Il comando \textbf{DROP TABLE} elimina una tabella dal database:
+\begin{lstlisting}
+DROP TABLE nomeTabella;
+\end{lstlisting}
+\end{frame}
+%
+\begin{frame}[fragile]{DDL: DROP TABLE}
+Il seguente comando elimina la tabella \textit{Impiegati} dal database:
+\begin{lstlisting}
+DROP TABLE Impiegati;
+\end{lstlisting}
+\end{frame}
+%

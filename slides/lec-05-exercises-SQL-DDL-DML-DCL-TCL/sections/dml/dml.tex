@@ -120,8 +120,12 @@ DELETE FROM Impiegati;
 Manca la clausola \textbf{WHERE}: il comando svuota la tabella \textit{Impiegati} dai dati, ma rimane la sua struttura.
 \end{alertblock}
 \pause
-\begin{block}{Svuotare le tabelle}
-Per svuotare una tabella \`e possibile utilizzare DELETE FROM nomeTabella. Tuttavia, la maniera pi\`u corretta \`e utilizzare il comando \textbf{TRUNCATE} nomeTabella.
+{\begin{block}{Svuotare le tabelle}
+Per svuotare una tabella \`e possibile utilizzare DELETE FROM nomeTabella. Tuttavia, la maniera pi\`u corretta \`e utilizzare il comando \textbf{TRUNCATE TABLE} nomeTabella, il quale elimina i dati ma mantiene la struttura della tabella.
 \end{block}
+\begin{lstlisting}
+TRUNCATE TABLE Impiegati;
+\end{lstlisting}
+}
 \end{frame}
 %
