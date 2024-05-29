@@ -51,21 +51,13 @@ TO USR7, USR42;
 \end{frame}
 %
 \begin{frame}[fragile]{DCL: GRANT - privilegi per Tabelle e Viste}
-\begin{itemize}
-\item Sintassi di GRANT per concedere privilegi su tabelle e viste:
+Sintassi di GRANT per concedere privilegi su tabelle e viste:
 \begin{lstlisting}
 GRANT < ALL |$\vert$| lista_privilegi >
 ON [ TABLE ] < nome_tabella >
 TO { < lista_utenti e gruppi |$\vert$| PUBLIC > }
 [ WITH GRANT OPTION ];
 \end{lstlisting}
-\item Possibili privilegi:
-\\\textbf{CREATEIN}: per creare oggetti (tabelle, viste) nello schema;
-
-\textbf{ALTERIN}:~~~per modificare la struttura di tabelle dello schema;
-
-\textbf{DROPIN}:~~~~per eliminare oggetti dallo schema.
-\end{itemize}
 \end{frame}
 %
 \begin{frame}[fragile]{Esempio DCL: GRANT - privilegi per Tabelle}
