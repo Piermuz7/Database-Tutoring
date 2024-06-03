@@ -36,7 +36,7 @@ WHERE last_name = `Johansson';
 Quanti cognomi distinti di attori ci sono?
 \pause
 \begin{lstlisting}
-SELECT COUNT(distinct last_name)
+SELECT COUNT(DISTINCT last_name)
 FROM actor;
 \end{lstlisting}
 \end{frame}
@@ -70,7 +70,8 @@ Qual \`e l'attore che ha recitato nel maggior numero di film?
 SELECT actor.actor_id, actor.first_name, actor.last_name,
 COUNT(actor.actor_id) AS film_count
 FROM actor JOIN film_actor
-GROUP BY actor_id
+ON actor.actor_id = film_actor.actor_id
+GROUP BY film_actor.actor_id
 ORDER BY film_count DESC
 LIMIT 1;
 \end{lstlisting}
@@ -102,8 +103,10 @@ Qual \`e la durata media dei film per categoria?
 \begin{lstlisting}
 SELECT category.name, AVG(length)
 FROM film JOIN film_category
+ON film.film_id = film_category.film_id
 JOIN category
-GROUP BY category.name
+ON film_category.category_id = category.category_id
+GROUP BY category.category_id
 ORDER BY AVG(length) DESC;
 \end{lstlisting}
 \end{frame}

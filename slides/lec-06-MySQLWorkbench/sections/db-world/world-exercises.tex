@@ -107,7 +107,7 @@ LIMIT 1;
 \end{frame}
 %
 \begin{frame}[fragile]{World: Es. 8}
-Trovare la citt\`a con la popolazione pi\`u bassa nella tabella \textit{city}.
+Trovare la citt\`a con la popolazione pi\`u bassa nella tabella \textit{country}.
 \\Altra possibile soluzione:
 \pause
 \\Prima troviamo la \textbf{popolazione pi\`u bassa}:
@@ -178,7 +178,7 @@ Trovare la capitale della Spagna (ESP).
 \begin{lstlisting}
 SELECT city.Name
 FROM city JOIN country ON city.ID = country.Capital
-WHERE city.CountryCode = 'ESP';
+WHERE city.CountryCode = `ESP';
 \end{lstlisting}
 \end{frame}
 %
@@ -221,7 +221,7 @@ Trovare tutte le citt\`a del continente europeo.
 \begin{lstlisting}
 SELECT city.Name
 FROM city JOIN country ON city.CountryCode = country.Code
-WHERE country.Continent = 'Europe';
+WHERE country.Continent = `Europe';
 \end{lstlisting}
 \end{frame}
 %
