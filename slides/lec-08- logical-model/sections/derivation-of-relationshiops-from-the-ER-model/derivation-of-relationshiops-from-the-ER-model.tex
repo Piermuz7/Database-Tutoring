@@ -1,0 +1,22 @@
+\begin{frame}{La derivazione delle relazioni dal modello E/R}
+Dal modello concettuale dei dati \`e possibile ottenere il \textbf{modello logico} dei dati.
+
+\pause
+In altre parole si pu\`o definire la struttura degli archivi adatti per organizzare i dati.
+
+\pause
+Nel caso del modello relazionale le tabelle, che costituiscono il modello logico, vengono ricavate dal modello E/R mediante alcune semplici \textbf{regole di derivazione}.
+\end{frame}
+%
+\begin{frame}[allowframebreaks]{Le regole di derivazione}
+\begin{enumerate}
+    \item Ogni entit\`a diventa una relazione.
+    \item Ogni attributo di un'entit\`a diventa un attributo della relazione, cio\`e il nome di una colonna della tabella.
+    \item Ogni attributo della relazione eredita le caratteistiche dell'attributo dell'entit\`a da cui deriva.
+    \item L'identificaziore univoco di un'entit\`a diventa la \textit{chiave primaria} della relazione derivata.
+    \item L'associazione \textit{uno a uno} diventa un'unica relazione che contiene gli attributi della prima e della seconda entit\`a.
+    \item L'associazione \textit{uno a molti} viene rappresentata aggiungendo, agli attributi dell'entit\`a che svolge il ruolo a molto, l'identificatore univoco dell'entit\`a che svolge il ruolo a uno nell'associazione. Questo identificatore che prende il nome di \textbf{chiave esterna} (foreign key) dell'entit\`a associata, \`e costituito dll'insieme di attributi che compongono la chiave dell'entit\`a a uno dell'assocazione. Gli eventuali attributi dell'associazione vengono inseriti nella relazione che rappresenta l'entit\`a a molti, assieme alla chiave esterna.
+    \item L'associazione \textit{molti a molti} diventa una nuova relazione composta dagli identificatori univoci delle due entit\`a e dagli eventuali attributi che compongono le chiavi delle 2 entit\`a.
+\end{enumerate}
+\end{frame}
+%

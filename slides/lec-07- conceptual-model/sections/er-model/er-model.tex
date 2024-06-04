@@ -20,7 +20,7 @@ Gli elementi di un modello ER sono:
 \begin{frame}{Entit\`a e Associazioni}
 \framesubtitle{Entit\`a}
 \begin{block}{Entit\`a}
-L' \textbf{entit\`a} \`e un oggetto (concreto o astratto) che ha un significato anche quando viene considerato in modo isolato ed \`e di interesse per la realt\`a che si vuole modellare.
+L'\textbf{entit\`a} \`e un oggetto (concreto o astratto) che ha un significato anche quando viene considerato in modo isolato ed \`e di interesse per la realt\`a che si vuole modellare.
 \end{block}
 \pause
 Esempi di entit\`a:
@@ -48,7 +48,7 @@ Esempio:
 \pause
 
 \begin{block}{Istanza}
-L' \textbf{istanza} di un tipo entit\`a \`e un oggetto concreto che appartiene a quel tipo entit\`a.
+L'\textbf{istanza} di un tipo entit\`a \`e un oggetto concreto che appartiene a quel tipo entit\`a.
 \end{block}
 \end{frame}
 %
@@ -82,7 +82,7 @@ In altre parole, le entit\`a sono classi di oggetti che possono esistere autonom
 \begin{frame}{Entit\`a e Associazioni}
 \framesubtitle{Associazioni}
 \begin{block}{Associazione}
-L' \textbf{associazione} (in inglese \textbf{relationship}) \`e un legame che stabilisce un'interazione tra le entit\`a.
+L'\textbf{associazione} (in inglese \textbf{relationship}) \`e un legame che stabilisce un'interazione tra le entit\`a.
 \end{block}
 \pause
 \begin{center}
@@ -206,7 +206,7 @@ In altre parole, le associazioni sono i diversi tipi di relazioni che intercorro
 \begin{frame}{Associazioni: convenzioni}
 
 \begin{itemize}
-    \item La rappresentazione grafica convenzionalmente usata per indicare un' associazione \`e una linea che unisce le entit\`a interessate;
+    \item La rappresentazione grafica convenzionalmente usata per indicare un'associazione \`e una linea che unisce le entit\`a interessate;
     \item Il nome compare sulla linea con il simbolo della punta di una freccia per indicare il senso di lettura dell'associazione;
 \end{itemize}
 \pause
@@ -394,7 +394,7 @@ Altro esempio di associazione ricorsiva nella quale l'entit\`a \textit{Dipendent
 \begin{frame}{Attributi}
 \begin{minipage}{0.9\textwidth}
 \begin{block}{Gli attributi}
-Le propriet\`a delle entit`a e delle associazioni sono descritte attraverso gli \textbf{attributi}.
+Le propriet\`a delle entit\`a e delle associazioni sono descritte attraverso gli \textbf{attributi}.
 \end{block}
 \end{minipage}
 \pause
@@ -588,7 +588,7 @@ Si indica con il termine \textbf{chiave} o \textbf{chiave primaria} (primary key
 \end{itemize}
 \pause
 
-Nel caso delle 2 entit\`a \textit{Persona} e \textit{Automobile} gli attributi CoeiceFiscale e Modello sono rispettivamente le chiavi primarie per le entit\`a.
+Nel caso delle 2 entit\`a \textit{Persona} e \textit{Automobile} gli attributi CodiceFiscale e Modello sono rispettivamente le chiavi primarie per le entit\`a.
 \end{frame}
 %
 \begin{frame}{Attributi}
@@ -637,7 +637,7 @@ In altre parole, gli attributi sono le propriet\`a di cui vogliamo tenere conto 
 \end{frame}
 %
 \begin{frame}{Attributi}
-Sono le propriet\`a di cui vogliamo tenere conto per ogni entit\`a.
+In altre parole, gli attributi sono le propriet\`a di cui vogliamo tenere conto per ogni entit\`a.
 \vspace{1.8cm}
 
 \begin{center}
@@ -719,7 +719,7 @@ Sono le propriet\`a di cui vogliamo tenere conto per ogni entit\`a.
     \draw[black, fill=black] (aboveLine) circle [radius=2pt];
     \draw (aboveLine) circle [radius=2pt];
     \node[left] at (aboveLine) {CF};}
-\end{tikzpicture}  
+\end{tikzpicture}
 \end{center}
 \end{frame}
 %
@@ -850,7 +850,7 @@ Un'associazione si dice \textbf{molti a molti}, o complessa, e si indica con \te
 \newline
 \\Esempio:
 
-Consideriamo ora le entit\`a \textit{Docente} e \textit{Classe} e l'associazione cbe collega i docenti di una scuola con le classi dove insegnano.
+Consideriamo ora le entit\`a \textit{Docente} e \textit{Classe} e l'associazione che collega i docenti di una scuola con le classi dove insegnano.
 \end{frame}
 %
 \begin{frame}{Associazioni: Cardinalit\`a}
@@ -1016,5 +1016,88 @@ Una entit\`a pu\`o avere un`associazione ricorsiva:
     \draw (rect2.east) -| (rhombus3.east) node[midway, right] {(1,1)}; 
     \draw (rect2) -- (rhombus3) node[midway, right] {(1,1)}; 
 \end{tikzpicture}
+\end{frame}
+%
+\begin{frame}{Generalizzazione}
+Le classi con attributi comuni possono essere generalizzate.
+
+\begin{center}
+    \begin{tikzpicture}[remember picture]
+        % Define styles for shapes
+        \tikzstyle{rectangle} = [draw, minimum width=3cm, minimum height=1cm]
+        
+        % Draw shapes
+        \node[rectangle] (studente) at (0, 0) {Studente};
+        \node[rectangle] (professore) at (4, 0) {Professore};
+        
+        % Draw attribute line with black bullet for "matricola"
+        \coordinate (matricolaStart) at ($(studente.west) + (-1.5, 0)$);
+        \draw[decoration={markings,mark=at position 1 with {\draw[black, fill=black] circle [radius=2pt];}},postaction={decorate}] (studente.west) -- (matricolaStart);
+        \node[left] at (matricolaStart) {matricola};
+        
+        % Draw attribute line with black bullet for "ID"
+        \coordinate (idStart) at ($(professore.east) + (1.5, 0.4)$);
+        \draw[decoration={markings,mark=at position 1 with {\draw[black, fill=black] circle [radius=2pt];}},postaction={decorate}] (professore.east) -- (idStart);
+        \node[right] at (idStart) {ID};
+        
+        % Draw attribute line with white bullet for "orario"
+        \coordinate (orarioStart) at ($(professore.east) + (1.5, -0.4)$);
+        \draw[decoration={markings,mark=at position 1 with {\draw[white, fill=white] circle [radius=2pt];}},postaction={decorate}] (professore.east) -- (orarioStart);
+        \draw[white, fill=white] (orarioStart) circle [radius=2pt];
+        \draw (orarioStart) circle [radius=2pt];
+        \node[right] at (orarioStart) {orario};
+        
+        % Draw vertical attribute line with white bullet for "nome" linked to "Studente"
+        \coordinate (startNome) at ($(studente.south west) + (0.3,0)$);
+        \coordinate (endNome) at ($(startNome) + (0,-1)$);
+        \draw[decoration={markings,mark=at position 1 with {\draw[white, fill=white] circle [radius=2pt];}},postaction={decorate}] (startNome) -- (endNome);
+        \draw[white, fill=white] (endNome) circle [radius=2pt];
+        \draw (endNome) circle [radius=2pt];
+        \node[below] at (endNome) {nome};
+
+        % Draw vertical attribute line with white bullet for "cognome" linked to "Studente"
+        \coordinate (startCognome) at ($(studente.south west) + (1.4,0)$);
+        \coordinate (endCognome) at ($(startCognome) + (0,-1.5)$);
+        \draw[decoration={markings,mark=at position 1 with {\draw[white, fill=white] circle [radius=2pt];}},postaction={decorate}] (startCognome) -- (endCognome);
+        \draw[white, fill=white] (endCognome) circle [radius=2pt];
+        \draw (endCognome) circle [radius=2pt];
+        \node[below] at (endCognome) {cognome};
+
+        % Draw vertical attribute line with white bullet for "dataNascita" linked to "Studente"
+        \coordinate (startDataNascita) at ($(studente.south west) + (2.5,0)$);
+        \coordinate (endDataNascita) at ($(startDataNascita) + (0,-2)$);
+        \draw[decoration={markings,mark=at position 1 with {\draw[white, fill=white] circle [radius=2pt];}},postaction={decorate}] (startDataNascita) -- (endDataNascita);
+        \draw[white, fill=white] (endDataNascita) circle [radius=2pt];
+        \draw (endDataNascita) circle [radius=2pt];
+        \node[below] at (endDataNascita) {dataNascita};
+
+        % Draw vertical attribute line with white bullet for "nome" linked to "Professore"
+        \coordinate (startNomeProf) at ($(professore.south west) + (0.3,0)$);
+        \coordinate (endNomeProf) at ($(startNomeProf) + (0,-1)$);
+        \draw[decoration={markings,mark=at position 1 with {\draw[white, fill=white] circle [radius=2pt];}},postaction={decorate}] (startNomeProf) -- (endNomeProf);
+        \draw[white, fill=white] (endNomeProf) circle [radius=2pt];
+        \draw (endNomeProf) circle [radius=2pt];
+        \node[below] at (endNomeProf) {nome};
+
+        % Draw vertical attribute line with white bullet for "cognome" linked to "Professore"
+        \coordinate (startCognomeProf) at ($(professore.south west) + (1.4,0)$);
+        \coordinate (endCognomeProf) at ($(startCognomeProf) + (0,-1.5)$);
+        \draw[decoration={markings,mark=at position 1 with {\draw[white, fill=white] circle [radius=2pt];}},postaction={decorate}] (startCognomeProf) -- (endCognomeProf);
+        \draw[white, fill=white] (endCognomeProf) circle [radius=2pt];
+        \draw (endCognomeProf) circle [radius=2pt];
+        \node[below] at (endCognomeProf) {cognome};
+
+        % Draw vertical attribute line with white bullet for "dataNascita" linked to "Professore"
+        \coordinate (startDataNascitaProf) at ($(professore.south west) + (2.5,0)$);
+        \coordinate (endDataNascitaProf) at ($(startDataNascitaProf) + (0,-2)$);
+        \draw[decoration={markings,mark=at position 1 with {\draw[white, fill=white] circle [radius=2pt];}},postaction={decorate}] (startDataNascitaProf) -- (endDataNascitaProf);
+        \draw[white, fill=white] (endDataNascitaProf) circle [radius=2pt];
+        \draw (endDataNascitaProf) circle [radius=2pt];
+        \node[below] at (endDataNascitaProf) {dataNascita};
+        
+    \end{tikzpicture}
+\end{center}
+
+
 \end{frame}
 %
