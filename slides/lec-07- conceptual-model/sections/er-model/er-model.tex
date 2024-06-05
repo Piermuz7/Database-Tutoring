@@ -853,6 +853,78 @@ Un'associazione si dice \textbf{molti a molti}, o complessa, e si indica con \te
 Consideriamo ora le entit\`a \textit{Docente} e \textit{Classe} e l'associazione che collega i docenti di una scuola con le classi dove insegnano.
 \end{frame}
 %
+\begin{frame}{Associazioni: Regole di lettura}
+\framesubtitle{Uno a uno - facoltativa e obbligatoria}
+Per entrambi i versi di ciascuna associazione si usano le seguenti regole di lettura:
+\begin{itemize}[<+->]
+    \item Ogni \textit{nome dell'entit\`a} di partenza {\color{violet}{pu\`o}} o {\color{red}{deve}}  \textit{nome dell'associazione} {\color{blue}{uno solo}} \textit{nome dell'entit\`a di arrivo};
+    
+    \pause
+    \begin{tikzpicture}[remember picture]
+        % Define styles for shapes
+        \tikzstyle{rectangle} = [draw, minimum width=3cm, minimum height=1cm]
+        \tikzstyle{rhombus} = [draw, diamond, minimum width=3cm, minimum height=1cm, aspect=2]
+        % Draw shapes
+        \node[rectangle] (rect1) at (2, -0.5) {Docente};
+        \node[rhombus] (rhombus) at (7, -0.5) {Coordinare};
+        \node[rectangle] (rect2) at (12, -0.5) {Classe};
+        % Draw arrows
+            \draw (rect1) -- (rhombus) node[midway, above] {({\color{violet}{0}},{\color{blue}{1}})};
+        \draw (rhombus) -- (rect2) node[midway, above] {({\color{red}{1}},{\color{blue}{1}})};
+    \end{tikzpicture}
+    \item Lettura (da sinistra a destra): ``Un docente {\color{violet}{pu\`o}} coordinare {\color{blue}{una}} classe.''
+    \item Lettura (da destra a sinistra): ``Una classe {\color{red}{deve essere}} coordinata da {\color{blue}{un}} docente.''
+\end{itemize}
+\end{frame}
+%
+\begin{frame}{Associazioni: Regole di lettura}
+\framesubtitle{Uno a molti - facoltativa e obbligatoria}
+Per entrambi i versi di ciascuna associazione si usano le seguenti regole di lettura:
+\begin{itemize}[<+->]
+    \item Ogni \textit{nome dell'entit\`a} di partenza {\color{violet}{pu\`o}} o {\color{red}{deve}}  \textit{nome dell'associazione} {\color{blue}{uno o pi\`u}} \textit{nome dell'entit\`a di arrivo};
+    
+    \pause
+    \begin{tikzpicture}[remember picture]
+        % Define styles for shapes
+        \tikzstyle{rectangle} = [draw, minimum width=3cm, minimum height=1cm]
+        \tikzstyle{rhombus} = [draw, diamond, minimum width=3cm, minimum height=1cm, aspect=2]
+        % Draw shapes
+        \node[rectangle] (rect1) at (2, -0.5) {ContoCorrente};
+        \node[rhombus] (rhombus) at (7, -0.5) {Effettuare};
+        \node[rectangle] (rect2) at (12, -0.5) {Movimento};
+        % Draw arrows
+        \draw (rect1) -- (rhombus) node[midway, above] {({\color{violet}{0}},{\color{blue}{N}})};
+        \draw (rhombus) -- (rect2) node[midway, above] {({\color{red}{1}},{\color{blue}{1}})};
+    \end{tikzpicture}
+    \item Lettura (da sinistra a destra): ``Un conto corrente {\color{violet}{pu\`o}} effettuare {\color{blue}{uno o pi\`u}} movimenti.''
+    \item Lettura (da destra a sinistra): ``Un movimento {\color{red}{deve essere}} effettuato da {\color{blue}{un}} conto corrente.''
+\end{itemize}
+\end{frame}
+%
+\begin{frame}{Associazioni: Regole di lettura}
+\framesubtitle{Molti a molti - facoltativa e obbligatoria}
+Per entrambi i versi di ciascuna associazione si usano le seguenti regole di lettura:
+\begin{itemize}[<+->]
+    \item Ogni \textit{nome dell'entit\`a} di partenza {\color{violet}{pu\`o}} o {\color{red}{deve}}  \textit{nome dell'associazione} {\color{blue}{uno o pi\`u}} \textit{nome dell'entit\`a di arrivo};
+    
+    \pause
+    \begin{tikzpicture}[remember picture]
+        % Define styles for shapes
+        \tikzstyle{rectangle} = [draw, minimum width=3cm, minimum height=1cm]
+        \tikzstyle{rhombus} = [draw, diamond, minimum width=3cm, minimum height=1cm, aspect=2]
+        % Draw shapes
+        \node[rectangle] (rect1) at (2, -0.5) {Docente};
+        \node[rhombus] (rhombus) at (7, -0.5) {Insegnare};
+        \node[rectangle] (rect2) at (12, -0.5) {Classe};
+        % Draw arrows
+        \draw (rect1) -- (rhombus) node[midway, above] {({\color{violet}{0}},{\color{blue}{N}})};
+        \draw (rhombus) -- (rect2) node[midway, above] {({\color{red}{1}},{\color{blue}{N}})};
+    \end{tikzpicture}
+    \item Lettura (da sinistra a destra): ``Un docente {\color{violet}{pu\`o}} insegnare in {\color{blue}{una o pi\`u}} classi.''
+    \item Lettura (da destra a sinistra): ``In una classe {\color{red}{devono insegnare}} {\color{blue}{uno o pi\`u}} docenti.''
+\end{itemize}
+\end{frame}
+%
 \begin{frame}{Associazioni: Cardinalit\`a}
 Esistono 3 diversi tipi di cardinalit\`a nelle associazioni:
 \vspace{1cm}
