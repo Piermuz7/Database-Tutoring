@@ -32,6 +32,43 @@
         100 & VE1 & 720 & Calle Corta, 5 \\ \hline
     \end{tabular}
 }
+\def\InventarioNegozi{
+    \begin{minipage}[t]{0.48\linewidth}
+        \begin{center}
+            \textbf{Inventario}
+            
+            \begin{tabular}{|c|c|c|}
+            \hline
+            \rowcolor{cyan!30} \underline{Prodotto} & \underline{Magazzino} & Quantita \\
+            \hline
+            545 & CA1 & 800 \\ \hline
+            545 & PA2 & 700 \\ \hline
+            545 & VE1 & 356 \\ \hline
+            100 & CA1 & 245 \\ \hline
+            200 & VE1 & 230 \\ \hline
+            545 & PA1 & 370 \\ \hline
+            100 & PA2 & 350 \\ \hline
+            100 & VE1 & 720 \\ \hline
+        \end{tabular}
+        \end{center}
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{0.5\linewidth}
+        \begin{center}
+            \textbf{Negozi}
+    
+            \begin{tabular}{|c|c|}
+            \hline
+            \rowcolor{cyan!30} \underline{Magazzino} & IndirizzoMagazzino \\
+            \hline
+            CA1 & Via Tonale, 12 \\ \hline
+            PA1 & Via Garibaldi, 38 \\ \hline
+            PA2 & Via Mazzini, 25 \\ \hline
+            VE1 & Calle Corta, 5 \\ \hline
+        \end{tabular}
+        \end{center}
+    \end{minipage}
+}
 \begin{frame}{La Ridondanza dei Dati}
 \begin{minipage}{0.9\textwidth}
     \begin{block}{Ridondanza}
@@ -95,45 +132,7 @@ Per evitare ridonanza di IndirizzoMagazzino possiamo pensare di sostituire alla 
 \pause
 \vspace{.2cm}
 
-    \begin{minipage}[t]{0.48\linewidth}
-            \begin{center}
-                \textbf{Inventario}
-                
-                \begin{tabular}{|c|c|c|}
-                    \hline
-                    \rowcolor{cyan!30}Prodotto & Magazzino & Quantita \\
-                    \hline
-                    545 & CA1 & 800 \\ \hline
-                    545 & PA2 & 700 \\ \hline
-                    545 & VE1 & 356 \\ \hline
-                    100 & CA1 & 245 \\ \hline
-                    200 & VE1 & 230 \\ \hline
-                    545 & PA1 & 370 \\ \hline
-                    100 & PA2 & 350 \\ \hline
-                    100 & VE1 & 720 \\ \hline
-                \end{tabular}
-            \end{center}
-        \end{minipage}%
-        \hfill%
-        \begin{minipage}[t]{0.48\linewidth}
-            \begin{center}
-                \textbf{Negozi}
-        
-                \begin{tabular}{|c|c|}
-                    \hline
-                    \rowcolor{cyan!30}Magazzino & IndirizzoMagazzino \\
-                    \hline
-                    CA1 & Via Tonale, 12 \\ \hline
-                    PA2 & Via Mazzini, 25 \\ \hline
-                    VE1 & Calle Corta, 5 \\ \hline
-                    CA1 & Via Tonale, 12 \\ \hline
-                    VE1 & Calle Corta, 5 \\ \hline
-                    PA1 & Via Garibaldi, 38 \\ \hline
-                    PA2 & Via Mazzini, 25 \\ \hline
-                    VE1 & Calle Corta, 5 \\ \hline
-                \end{tabular}
-            \end{center}
-        \end{minipage}
+\InventarioNegozi
 \end{frame}
 %
 \begin{frame}{La Ridondanza dei Dati}
@@ -153,7 +152,7 @@ Le tabelle avranno il seguente schema:
 \begin{itemize}[<+->]
     \item Sono stati definiti opportuni criteri che dono essere soddisfatti dalle relazioni per evitare la \textbf{ridonanza} dei dati e le possibili anomalie che ne conseguono;
     \item Tali criteri definiscono le caratteristiche che devono essere soddisfatte da una relazione ben strutturata e prendono il nome di \textbf{forme normali};
-    \item Le forme normali sono di livello crescente , e sono accompagnate da algoritmi per la trasformazione di una tabella, che viola una forma normale, in un insieme di tabelle chr rispettano il criterio;
+    \item Le forme normali sono di livello crescente , e sono accompagnate da algoritmi per la trasformazione di una tabella, che viola una forma normale, in un insieme di tabelle che rispettano il criterio;
     \item Tale processo di trasformazione prende il nome di \textbf{normalizzazione}.
 \end{itemize}
 \end{frame}
@@ -220,7 +219,7 @@ Regole e procedimenti volti ad eliminare (o almeno a ridurre) le \textbf{ridonda
         \item \textbf{Chiave candidata} \`e una superchiave minimale, ovvero nessun sottoinsieme di attributi pu\`o essere considerato una superchiave della tabella;
         \item \textbf{Chiave o chiave primaria} \`e la chiave candidata selezionata per identificare in modo univoco una tupla della tabella (ci possono essere molte chiavi candidate ma una sola chiave primaria);
         \item \textbf{Chiave alternativa} \`e una qualsiasi chiave candidata che non \`e stata scelta come chiave primaria;
-        \item \textbf{Attributo non-chiave} o {non primo} \`e un attributo che non fa parte della chiave. In caso contrario viene chiamato \textbf{attributo chiave} o {primo}.
+        \item \textbf{Attributo non-chiave} o \textbf{non primo} \`e un attributo che non fa parte della chiave. In caso contrario viene chiamato \textbf{attributo chiave} o \textbf{primo}.
     \end{itemize}
 \end{frame}
 %
@@ -392,7 +391,7 @@ Notiamo che:
     \item da \{Prodotto, Magazzino\} = \{545, PA2\}:
     
     \{545, PA2\} $ \rightarrow $ (2, 700, `Via Mazzini, 25');
-    \item da Magazzino = VE1: VE1 $ \rightarrow $ `Valle Corta, 5'.
+    \item da Magazzino = VE1: VE1 $ \rightarrow $ `Calle Corta, 5'.
 \end{itemize}
 \begin{tikzpicture}[remember picture, overlay]
     \node[anchor=south east, xshift=0.3cm, yshift=-0.5cm] at (current page.south east) {
@@ -427,7 +426,7 @@ Generalizzando si intuisce che:
 In simboli:
 \begin{itemize}[<+->]
     \item Numero $ \rightarrow $ (Prodotto, Magazzino, Quantita, IndirizzoMagazzino);
-    \item \{Prodotto, Magazzino\} $ \rightarrow $ (Numero, Quantita, IndirizzoMagazzino);
+    \item {\small \{Prodotto, Magazzino\} $ \rightarrow $ (Numero, Quantita, IndirizzoMagazzino);}
     \item Magazzino $ \rightarrow $ IndirizzoMagazzino.
 \end{itemize}
 \begin{tikzpicture}[remember picture, overlay]
@@ -537,6 +536,7 @@ Un database \`e in 1NF se ogni tabella rispetta le propriet\`a precedentemente e
 \end{frame}
 %
 \begin{frame}{Prima Forma Normale (1NF)}
+\vspace{.2cm}
 \begin{table}[h]
     \centering
     \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{2.5cm}|}
@@ -564,7 +564,7 @@ NO!
 \begin{frame}{Prima Forma Normale (1NF)}
 \begin{table}[h]
     \centering
-    \begin{tabular}{| l | l | l | l |}
+    \begin{tabular}{|c|c|c|c|}
         \hline
         \rowcolor{cyan!30} \textbf{SHOW} & \textbf{ORARIO} & \textbf{TIPOLOGIA} & \textbf{SIGLA} \\ \hline
         Studio Aperto & 12:00 - 13:30 & Info & \texttt{null} \\ \hline
@@ -752,41 +752,7 @@ Applicando l'algoritmo di scomposizione:
 %
 \begin{frame}{2NF: Esempio Inventario}
 \vspace{-1.5cm}
-\begin{minipage}[t]{0.48\linewidth}
-    \begin{center}
-        \textbf{Inventario}
-        
-        \begin{tabular}{|c|c|c|}
-        \hline
-        \rowcolor{cyan!30} \underline{Prodotto} & \underline{Magazzino} & Quantita \\
-        \hline
-        545 & CA1 & 800 \\ \hline
-        545 & PA2 & 700 \\ \hline
-        545 & VE1 & 356 \\ \hline
-        100 & CA1 & 245 \\ \hline
-        200 & VE1 & 230 \\ \hline
-        545 & PA1 & 370 \\ \hline
-        100 & PA2 & 350 \\ \hline
-        100 & VE1 & 720 \\ \hline
-    \end{tabular}
-    \end{center}
-\end{minipage}%
-\hfill%
-\begin{minipage}[t]{0.5\linewidth}
-    \begin{center}
-        \textbf{Negozi}
-
-        \begin{tabular}{|c|c|}
-        \hline
-        \rowcolor{cyan!30} \underline{Magazzino} & IndirizzoMagazzino \\
-        \hline
-        CA1 & Via Tonale, 12 \\ \hline
-        PA1 & Via Garibaldi, 38 \\ \hline
-        PA2 & Via Mazzini, 25 \\ \hline
-        VE1 & Calle Corta, 5 \\ \hline
-    \end{tabular}
-    \end{center}
-\end{minipage}
+\InventarioNegozi
 \begin{tikzpicture}[remember picture, overlay]
     \node[anchor=south east, xshift=0.3cm, yshift=-0.5cm] at (current page.south east) {
         \includegraphics[width=0.3\textwidth]{img/goku_s2.png}
@@ -847,7 +813,7 @@ Applicando l'algoritmo di scomposizione:
 \begin{frame}{Terza Forma Normale (3NF)}
 \vspace{-1.5cm}
 \begin{minipage}{0.9\textwidth}
-Una relazione \`e in \textbf{terza normale (3NF)} quando \`e in 2NF e TUTTI i gli attributi non-chiave (non primi) dipendono direttamente dalla chiave, cio\`e non possiede attributi che dipendono soltanto da una parte della chiave, cio\`e non attributi non-chiave che dipendono da altri attributi non-chiave.
+Una relazione \`e in \textbf{terza normale (3NF)} quando \`e in 2NF e TUTTI gli attributi non-chiave (non primi) dipendono direttamente dalla chiave, cio\`e non possiede attributi che dipendono soltanto da una parte della chiave, cio\`e non attributi non-chiave che dipendono da altri attributi non-chiave.
 \end{minipage}
 \pause
 
